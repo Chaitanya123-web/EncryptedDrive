@@ -3,6 +3,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
+import ShareView from "./pages/ShareView";
+
 
 export default function App() {
   return (
@@ -12,6 +15,8 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/share/:shareId" element={<ShareView />} />
       </Routes>
     </BrowserRouter>
   );

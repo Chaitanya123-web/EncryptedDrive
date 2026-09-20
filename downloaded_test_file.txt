@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { canPreviewPublicFile } from '../controllers/fileController.js';
+
+test('public preview access allows a file marked public without an authenticated user', () => {
+  const file = {
+    visibility: 'public',
+    user: 'owner-123'
+  };
+
+  const req = {};
+  assert.equal(canPreviewPublicFile(req, file), true);
+});
+
+test('public preview access blocks private files even when a request has no auth user', () => {
+  const file = {
+    visibility: 'private',
+    user: 'owner-123'
+  };
+
+  const req = {};
+  assert.equal(canPreviewPublicFile(req, file), false);
+});
